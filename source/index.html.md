@@ -2,40 +2,36 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+  - php
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - <a href='https://zerobscrm.com/extension-bundles/'>Purchase our Bundle</a>
 
 includes:
   - errors
+  - sdk
 
 search: true
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Zero BS CRM API v2.0. The API is currently in Beta and we would love your feedback on it. Use the API to talk to Zero BS CRM from another application.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+The following table shows the API version present in each major version of Zero BS CRM
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+API Version    | ZBS Version | WP Version | Documentation
+-------------- | ------------| ------------ | -------------
+v2             | 2.70+ | 4.0+  | -
+v1             | 2.00+ | 4.0+  | [v1 Docs](https://docs.zerobscrm.com/api/)
+
+We are one of the only WordPress CRM's out there that offer a full API with detailed documentation. Tweet to us and say hi [@zerobscrm](https://twitter.com/zerobscrm)
 
 # Authentication
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
+```php
 import kittn
 
 api = kittn.authorize('meowmeowmeow')
@@ -65,34 +61,15 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+# Customers
 
 ## Get All Kittens
 
-```ruby
+```php
 require 'kittn'
 
 api = Kittn::APIClient.authorize!('meowmeowmeow')
 api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
 ```
 
 > The above command returns JSON structured like this:
