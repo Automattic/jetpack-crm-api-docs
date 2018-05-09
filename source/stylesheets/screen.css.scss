@@ -47,6 +47,20 @@ html, body {
   width: 20px;
 }
 
+.api-url{
+  padding: 15px;
+  background: #2e3336;
+  color: white;
+  border-radius:4px;
+  margin-top:10px;
+  .post{
+    background: #4e92d7;
+    padding: 5px;
+    border-radius: 4px;
+    margin-right: 5px;
+  }
+}
+
 .toc-wrapper {
   transition: left 0.3s ease-in-out;
 
