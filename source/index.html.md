@@ -28,6 +28,15 @@ We are one of the only WordPress CRM's out there that offer a full API with deta
 
 ## Requirements
 
+To be able to run the Zero BS CRM API you'll need the following on your WordPress install
+
+* Zero BS CRM v2.70+
+* WordPress v4.4+
+* Pretty permalinks in Settings >Permalinks so that custom enpoints are supported. **Default Permalinks will not work**
+* allow_url_fopen must be enabed on your server
+
+<aside class='info'> Please note that you are not required to install the WP REST API (WP API) plugin.</aside>  
+
 ## Errors
 
 <aside class="danger">
