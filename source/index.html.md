@@ -156,7 +156,68 @@ $data = array(
 
 ## View Customers
 
-## Get Customer
+Returns a list of customers. The meta information returned is the fields for the Customer (same as in create customer). If you have custom fields these are labelled slug (key): (value) in the meta element of the JSON response. Visit the URL in a browser window to inspect the response.
+
+### HTTP Request
+<br/>
+<span class='api-url'><span class='post'>POST</span> /customers?api_key={your_api_key}&api_secret={your_api_secret}</span>
+
+```php
+<?php
+$data = array(
+    'perpage' => '20',    
+    'page' => '1',
+    'search' => 'string',
+    'transactions' => 1,
+    'invoices' => 1,
+    'quotes' => 1,
+    'owned' => '1'
+    );
+
+
+
+
+?>
+```
+
+> JSON response example:
+
+```json
+{
+     "id":20267,
+     "created":"2017-04-25 03:33:38",
+     "name":"John Doe",
+     "filterTot":83,
+     "filterPages":5,
+     "meta":{
+             "zbsc_status":"Lead",
+             "status":"Customer",
+             "prefix":"",
+             "fname":"John",
+             "lname":"Doe",
+             "cf1":"Custom Field 1",
+             "addr1":"",
+             "addr2":"",
+             "city":"",
+             "county":"",
+             "postcode":"",
+             "country":"",
+             "secaddr_addr1":"",
+             "secaddr_addr2":"",
+             "secaddr_city":"",
+             "secaddr_county":"",
+             "secaddr_postcode":"",
+             "secaddr_country":"",
+             "hometel":"",
+             "worktel":"",
+             "mobtel":"",
+             "email":"email@email.com",
+             "notes":""
+        }
+}
+```
+
+## Search Customers
 
 ## Delete Customer
 
