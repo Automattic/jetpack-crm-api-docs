@@ -114,9 +114,10 @@ $data = array(
     'secaddr_country'  => 'USA', 
 
     'custom-field' => 'bacon'
+    'assign' => '1'
     );
 
-print_r($zerobscrm->post('customers', $data));
+    // print_r($zerobscrm->post('customers', $data));
 ?>
 ```
 
