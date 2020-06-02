@@ -1,11 +1,11 @@
 ---
-title: Zero BS CRM API Reference
+title: Jetpack CRM API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - PHP
 
 toc_footers:
-  - <a href='https://zerobscrm.com/extension-bundles/'>Entrepreneur's Bundle</a>
+  - <a href='https://jetpackcrm.com/extension-bundles/'>Entrepreneur's Bundle</a>
 
 includes:
 
@@ -15,22 +15,21 @@ search: true
 
 # Introduction
 
-Welcome to the Zero BS CRM API v2.0. The API is currently in Beta and we would love your feedback on it. Use the API to talk to Zero BS CRM from another application.
+Welcome to the Jetpack CRM API v2.0. The API is currently in Beta and we would love your feedback on it. Use the API to talk to Jetpack CRM from another application.
 
-The following table shows the API version present in each major version of Zero BS CRM
+The following table shows the API version present in each major version of Jetpack CRM
 
-API Version    | ZBS Version | WP Version | Documentation
+API Version    | Jetpack CRM Version | WP Version | Documentation
 -------------- | ------------| ------------ | -------------
 v2             | 2.70+ | 4.0+  | -
-v1             | 2.00+ | 4.0+  | [v1 Docs](https://docs.zerobscrm.com/api/)
 
-We are one of the only WordPress CRM's out there that offer a full API with detailed documentation. Tweet to us and say hi [@zerobscrm](https://twitter.com/zerobscrm)
+We are one of the only WordPress CRM's out there that offer a full API with detailed documentation. 
 
 ## Requirements
 
-To be able to run the Zero BS CRM API you'll need the following on your WordPress install
+To be able to run the Jetpack CRM API you'll need the following on your WordPress install
 
-* Zero BS CRM v2.70+
+* Jetpack CRM v2.70+
 * WordPress v4.4+
 * Pretty permalinks in Settings >Permalinks so that custom enpoints are supported. **Default Permalinks will not work**
 * allow_url_fopen must be enabled on your server
@@ -40,10 +39,10 @@ To be able to run the Zero BS CRM API you'll need the following on your WordPres
 ## Errors
 
 <aside class="danger">
-Zero BS CRM API has a numnber of error codes which it returns if it detects something wrong.
+Jetpack CRM API has a numnber of error codes which it returns if it detects something wrong.
 </aside>
 
-The Zero BS CRM API uses the following error codes:
+The Jetpack CRM API uses the following error codes:
 
 Error Code | Meaning
 ---------- | -------
@@ -61,7 +60,7 @@ Error Code | Meaning
 
 ## Parameters
 
-The Zero BS CRM API needs certain parameters to be able to return results. These are
+The Jetpack CRM API needs certain parameters to be able to return results. These are
 
 * api_key = {your_api_key}
 * api_secret = {your_api_secret}
@@ -74,16 +73,14 @@ Additionally, some endpoints also accept
 
 ## Ownership / Assignment
 
-Zero BS CRM has an ownership and assignment model. This means that you can restrict results to be only for a certain owner (i.e. assigned to a certain CRM team member). To do this you pass either the "assign", "owned" or "owner" (see endpoints for more information)
+Jetpack CRM has an ownership and assignment model. This means that you can restrict results to be only for a certain owner (i.e. assigned to a certain CRM team member). To do this you pass either the "assign", "owned" or "owner" (see endpoints for more information)
 
 ## Libraries and Tools
 
 Official Libraries
 ==================
 
-To make your development with Zero BS CRM and the API easier. The following libraries are available
-
-* PHP - [Zero BS CRM PHP API SDK](https://github.com/zero-bs-crm/api-php-sdk)
+We have no official libraries at this time. Watch this space.
 
 
 # Authentication
@@ -95,16 +92,16 @@ To make your development with Zero BS CRM and the API easier. The following libr
 ```
 
 
-Zero BS CRM uses API keys to allow access to the API. You can learn how to generate your API keys by reading [How to Generate API Keys](https://zerobscrm.com/kb/knowledge-base/zero-bs-crm-api-key-and-api-secrets/)
+Jetpack CRM uses API keys to allow access to the API. You can learn how to generate your API keys by reading [How to Generate API Keys](https://jetpackcrm.com/kb/knowledge-base/zero-bs-crm-api-key-and-api-secrets/)
 
-The API keys give both *Read* and *Write* access to your install of Zero BS CRM. 
+The API keys give both *Read* and *Write* access to your install of Jetpack CRM. 
 
 
 # Customers
 
 ## Create Customer 
 
-To Create a new Customer in your Zero BS CRM using the API you need to send a JSON post request to the URL. This will create or update a customer. The unique key is their email address. On Sucess the response will return the details of the new Customer added.
+To Create a new Customer in your Jetpack CRM using the API you need to send a JSON post request to the URL. This will create or update a customer. The unique key is their email address. On Sucess the response will return the details of the new Customer added.
 
 ### HTTP Request
 <br/>
@@ -296,7 +293,7 @@ Coming soon.
 
 # Quotes
 
-Quotes are what you use in Zero BS CRM to win work. The API for Quotes is in early development.
+Quotes are what you use in Jetpack CRM to win work. The API for Quotes is in early development.
 
 ## Create Quote
 
