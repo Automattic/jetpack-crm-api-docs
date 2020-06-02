@@ -1,5 +1,5 @@
 ---
-title: Jetpack CRM API Reference
+title: Jetpack CRM API Reference 
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - PHP
