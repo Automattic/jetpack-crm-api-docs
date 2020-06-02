@@ -1,0 +1,891 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Jetpack CRM API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;PHP&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="PHP">PHP</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="introduction">Introduction</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#requirements" class="toc-h2 toc-link" data-title="requirements">Requirements</a>
+                  </li>
+                  <li>
+                    <a href="#errors" class="toc-h2 toc-link" data-title="errors">Errors</a>
+                  </li>
+                  <li>
+                    <a href="#parameters" class="toc-h2 toc-link" data-title="parameters">Parameters</a>
+                  </li>
+                  <li>
+                    <a href="#pagination" class="toc-h2 toc-link" data-title="pagination">Pagination</a>
+                  </li>
+                  <li>
+                    <a href="#ownership-assignment" class="toc-h2 toc-link" data-title="ownership-assignment">Ownership / Assignment</a>
+                  </li>
+                  <li>
+                    <a href="#libraries-and-tools" class="toc-h2 toc-link" data-title="libraries-and-tools">Libraries and Tools</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#official-libraries" class="toc-h1 toc-link" data-title="official-libraries">Official Libraries</a>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="authentication">Authentication</a>
+          </li>
+          <li>
+            <a href="#customers" class="toc-h1 toc-link" data-title="customers">Customers</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-customer" class="toc-h2 toc-link" data-title="create-customer">Create Customer</a>
+                  </li>
+                  <li>
+                    <a href="#view-customers" class="toc-h2 toc-link" data-title="view-customers">View Customers</a>
+                  </li>
+                  <li>
+                    <a href="#search-customers" class="toc-h2 toc-link" data-title="search-customers">Search Customers</a>
+                  </li>
+                  <li>
+                    <a href="#delete-customer" class="toc-h2 toc-link" data-title="delete-customer">Delete Customer</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#quotes" class="toc-h1 toc-link" data-title="quotes">Quotes</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-quote" class="toc-h2 toc-link" data-title="create-quote">Create Quote</a>
+                  </li>
+                  <li>
+                    <a href="#view-quotes" class="toc-h2 toc-link" data-title="view-quotes">View Quotes</a>
+                  </li>
+                  <li>
+                    <a href="#get-quote" class="toc-h2 toc-link" data-title="get-quote">Get Quote</a>
+                  </li>
+                  <li>
+                    <a href="#delete-quote" class="toc-h2 toc-link" data-title="delete-quote">Delete Quote</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#invoices" class="toc-h1 toc-link" data-title="invoices">Invoices</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-invoice" class="toc-h2 toc-link" data-title="create-invoice">Create Invoice</a>
+                  </li>
+                  <li>
+                    <a href="#view-invoices" class="toc-h2 toc-link" data-title="view-invoices">View Invoices</a>
+                  </li>
+                  <li>
+                    <a href="#get-invoice" class="toc-h2 toc-link" data-title="get-invoice">Get Invoice</a>
+                  </li>
+                  <li>
+                    <a href="#delete-invoice" class="toc-h2 toc-link" data-title="delete-invoice">Delete Invoice</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#transactions" class="toc-h1 toc-link" data-title="transactions">Transactions</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-transaction" class="toc-h2 toc-link" data-title="create-transaction">Create Transaction</a>
+                  </li>
+                  <li>
+                    <a href="#view-transactions" class="toc-h2 toc-link" data-title="view-transactions">View Transactions</a>
+                  </li>
+                  <li>
+                    <a href="#get-transaction" class="toc-h2 toc-link" data-title="get-transaction">Get Transaction</a>
+                  </li>
+                  <li>
+                    <a href="#delete-transaction" class="toc-h2 toc-link" data-title="delete-transaction">Delete Transaction</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#events" class="toc-h1 toc-link" data-title="events">Events</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-event" class="toc-h2 toc-link" data-title="create-event">Create Event</a>
+                  </li>
+                  <li>
+                    <a href="#view-events" class="toc-h2 toc-link" data-title="view-events">View Events</a>
+                  </li>
+                  <li>
+                    <a href="#get-event" class="toc-h2 toc-link" data-title="get-event">Get Event</a>
+                  </li>
+                  <li>
+                    <a href="#delete-event" class="toc-h2 toc-link" data-title="delete-event">Delete Event</a>
+                  </li>
+              </ul>
+          </li>
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://jetpackcrm.com/extension-bundles/'>Entrepreneur's Bundle</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the Jetpack CRM API v2.0. The API is currently in Beta and we would love your feedback on it. Use the API to talk to Jetpack CRM from another application.</p>
+
+<p>The following table shows the API version present in each major version of Jetpack CRM</p>
+
+<table><thead>
+<tr>
+<th>API Version</th>
+<th>Jetpack CRM Version</th>
+<th>WP Version</th>
+<th>Documentation</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>v2</td>
+<td>2.70+</td>
+<td>4.0+</td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+<p>We are one of the only WordPress CRM&#39;s out there that offer a full API with detailed documentation. </p>
+<h2 id='requirements'>Requirements</h2>
+<p>To be able to run the Jetpack CRM API you&#39;ll need the following on your WordPress install</p>
+
+<ul>
+<li>Jetpack CRM v2.70+</li>
+<li>WordPress v4.4+</li>
+<li>Pretty permalinks in Settings &gt;Permalinks so that custom enpoints are supported. <strong>Default Permalinks will not work</strong></li>
+<li>allow_url_fopen must be enabled on your server</li>
+</ul>
+
+<aside class='info'> Please note that you are not required to install the WP REST API (WP API) plugin.</aside>  
+<h2 id='errors'>Errors</h2>
+<aside class="danger">
+Jetpack CRM API has a numnber of error codes which it returns if it detects something wrong.
+</aside>
+
+<p>The Jetpack CRM API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is wrong.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- The resourcerequested is hidden for administrators only.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The specified record could not be found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed -- You tried to access a record with an invalid method.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone -- The record requested has been removed from your database</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&#39;m a teapot.</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests -- You&#39;re requesting too many records! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- You are temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+<h2 id='parameters'>Parameters</h2>
+<p>The Jetpack CRM API needs certain parameters to be able to return results. These are</p>
+
+<ul>
+<li>api_key = {your_api_key}</li>
+<li>api_secret = {your_api_secret}</li>
+</ul>
+
+<p>Additionally, some endpoints also accept</p>
+
+<ul>
+<li>zbs_query = {your_search_query}</li>
+</ul>
+<h2 id='pagination'>Pagination</h2><h2 id='ownership-assignment'>Ownership / Assignment</h2>
+<p>Jetpack CRM has an ownership and assignment model. This means that you can restrict results to be only for a certain owner (i.e. assigned to a certain CRM team member). To do this you pass either the &quot;assign&quot;, &quot;owned&quot; or &quot;owner&quot; (see endpoints for more information)</p>
+<h2 id='libraries-and-tools'>Libraries and Tools</h2><h1 id='official-libraries'>Official Libraries</h1>
+<p>We have no official libraries at this time. Watch this space.</p>
+<h1 id='authentication'>Authentication</h1>
+<blockquote>
+<p>The API keys are passed via GET parameters to the request URLs e.g.:</p>
+</blockquote>
+<pre class="highlight php tab-php"><code>/{RESOURCE}?api_key={your_api_key}<span class="err">&amp;</span>api_secret={your_api_secret}
+</code></pre>
+<p>Jetpack CRM uses API keys to allow access to the API. You can learn how to generate your API keys by reading <a href="https://jetpackcrm.com/kb/knowledge-base/zero-bs-crm-api-key-and-api-secrets/">How to Generate API Keys</a></p>
+
+<p>The API keys give both <em>Read</em> and <em>Write</em> access to your install of Jetpack CRM. </p>
+<h1 id='customers'>Customers</h1><h2 id='create-customer'>Create Customer</h2>
+<p>To Create a new Customer in your Jetpack CRM using the API you need to send a JSON post request to the URL. This will create or update a customer. The unique key is their email address. On Sucess the response will return the details of the new Customer added.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><br/>
+<span class='api-url'><span class='post'>POST</span> /create_customer</span></p>
+<h3 id='get-parameters'>Get Parameters</h3>
+<ul>
+<li>api_key = {your_api_key}</li>
+<li>api_secret = {your_api_secret}</li>
+</ul>
+<pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'status'</span> <span class="o">=&gt;</span> <span class="s1">'Lead'</span><span class="p">,</span>    
+    <span class="s1">'prefix'</span> <span class="o">=&gt;</span> <span class="s1">'Mr'</span><span class="p">,</span>
+    <span class="s1">'fname'</span>  <span class="o">=&gt;</span> <span class="s1">'John'</span><span class="p">,</span>                     
+    <span class="s1">'lname'</span>  <span class="o">=&gt;</span> <span class="s1">'Doe'</span><span class="p">,</span>                  
+    <span class="s1">'suffix'</span> <span class="o">=&gt;</span> <span class="s1">'MSc'</span><span class="p">,</span>                  
+    <span class="s1">'email'</span>  <span class="o">=&gt;</span> <span class="s1">'someone@somewhere.com'</span><span class="p">,</span>        
+
+    <span class="s1">'hometel'</span> <span class="o">=&gt;</span> <span class="s1">'1234 567 89'</span><span class="p">,</span>     
+    <span class="s1">'worktel'</span> <span class="o">=&gt;</span> <span class="s1">'1234 567 89'</span><span class="p">,</span>  
+    <span class="s1">'mobtel'</span>   <span class="o">=&gt;</span> <span class="s1">'1234 567 89'</span><span class="p">,</span>
+
+    <span class="s1">'addr1'</span>    <span class="o">=&gt;</span> <span class="s1">'Sample House'</span><span class="p">,</span> 
+    <span class="s1">'addr2'</span>    <span class="o">=&gt;</span> <span class="s1">'Sample Road'</span><span class="p">,</span> 
+    <span class="s1">'city'</span>     <span class="o">=&gt;</span> <span class="s1">'Sample City'</span> 
+    <span class="s1">'county'</span>   <span class="o">=&gt;</span> <span class="s1">'Sample State'</span><span class="p">,</span> 
+    <span class="s1">'postcode'</span> <span class="o">=&gt;</span> <span class="s1">'P0ST C0D3'</span><span class="p">,</span> 
+    <span class="s1">'country'</span>  <span class="o">=&gt;</span> <span class="s1">'UK'</span><span class="p">,</span> 
+
+    <span class="s1">'secaddr_addr1'</span>    <span class="o">=&gt;</span> <span class="s1">'Sample House 2'</span><span class="p">,</span> 
+    <span class="s1">'secaddr_addr2'</span>    <span class="o">=&gt;</span> <span class="s1">'Sample Road 2'</span><span class="p">,</span>
+    <span class="s1">'secaddr_city'</span>     <span class="o">=&gt;</span> <span class="s1">'Sample City 2'</span><span class="p">,</span>
+    <span class="s1">'secaddr_county'</span>   <span class="o">=&gt;</span> <span class="s1">'Sample State 2'</span><span class="p">,</span> 
+    <span class="s1">'secaddr_postcode'</span> <span class="o">=&gt;</span> <span class="s1">'P1ST C1D3'</span><span class="p">,</span>
+    <span class="s1">'secaddr_country'</span>  <span class="o">=&gt;</span> <span class="s1">'USA'</span><span class="p">,</span> 
+
+    <span class="s1">'custom-field'</span> <span class="o">=&gt;</span> <span class="s1">'bacon'</span>
+    <span class="s1">'assign'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span>
+    <span class="p">);</span>
+
+
+
+
+<span class="cp">?&gt;</span>
+</code></pre>
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"fname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"lname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lead"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mr"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"addr1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 Sample Road"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"addr2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sample Town"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sampleton"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"county"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Samples"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SAM PL4"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"hometel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 455"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"worktel"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"mobtel"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"555 135"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"notes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Added from the API"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">135</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='view-customers'>View Customers</h2>
+<p>Returns a list of customers. The meta information returned is the fields for the Customer (same as in create customer). If you have custom fields these are labelled slug (key): (value) in the meta element of the JSON response. Visit the URL in a browser window to inspect the response.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><br/>
+<span class='api-url'><span class='post'>POST</span> /customers</span></p>
+<h3 id='get-parameters-2'>Get Parameters</h3>
+<ul>
+<li>api_key = {your_api_key}</li>
+<li>api_secret = {your_api_secret}</li>
+</ul>
+<pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'perpage'</span> <span class="o">=&gt;</span> <span class="s1">'20'</span><span class="p">,</span>    
+    <span class="s1">'page'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span>
+    <span class="s1">'search'</span> <span class="o">=&gt;</span> <span class="s1">'string'</span><span class="p">,</span>
+    <span class="s1">'transactions'</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">'invoices'</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">'quotes'</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">'owned'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span>
+    <span class="p">);</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+     </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">20267</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"created"</span><span class="p">:</span><span class="s2">"2017-04-25 03:33:38"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"filterTot"</span><span class="p">:</span><span class="mi">83</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"filterPages"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"meta"</span><span class="p">:{</span><span class="w">
+             </span><span class="s2">"zbsc_status"</span><span class="p">:</span><span class="s2">"Lead"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"Customer"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"prefix"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"fname"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"lname"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"cf1"</span><span class="p">:</span><span class="s2">"Custom Field 1"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"addr1"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"addr2"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"city"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"county"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"postcode"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"country"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"secaddr_addr1"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"secaddr_addr2"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"secaddr_city"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"secaddr_county"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"secaddr_postcode"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"secaddr_country"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"hometel"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"worktel"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"mobtel"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"email@email.com"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"notes"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='search-customers'>Search Customers</h2>
+<p>Searches the customers based on the query string $_GET[&#39;zbs_query&#39;]. Use this to Deep Search the meta values for the customers.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><br/>
+<span class='api-url'><span class='get'>GET</span> /customer_search</span></p>
+<h3 id='get-parameters-3'>Get Parameters</h3>
+<ul>
+<li>api_key = {your_api_key}</li>
+<li>api_secret = {your_api_secret}</li>
+<li>zbs_query = {your_search_query}</li>
+</ul>
+
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+     </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">20267</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"created"</span><span class="p">:</span><span class="s2">"2017-04-25 03:33:38"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"filterTot"</span><span class="p">:</span><span class="mi">83</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"filterPages"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"meta"</span><span class="p">:{</span><span class="w">
+             </span><span class="s2">"zbsc_status"</span><span class="p">:</span><span class="s2">"Lead"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"Customer"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"prefix"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"fname"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"lname"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"cf1"</span><span class="p">:</span><span class="s2">"Custom Field 1"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"addr1"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"addr2"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"city"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"county"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"postcode"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"country"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"secaddr_addr1"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"secaddr_addr2"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"secaddr_city"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"secaddr_county"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"secaddr_postcode"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"secaddr_country"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"hometel"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"worktel"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"mobtel"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"email@email.com"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"notes"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='delete-customer'>Delete Customer</h2>
+<p>Coming soon.</p>
+<h1 id='quotes'>Quotes</h1>
+<p>Quotes are what you use in Jetpack CRM to win work. The API for Quotes is in early development.</p>
+<h2 id='create-quote'>Create Quote</h2>
+<p>Coming soon.</p>
+<h2 id='view-quotes'>View Quotes</h2>
+<p>Retreives a list of the last 20 Quotes generated by the CRM owner. This is useful if you want to display recent quotes.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><br/>
+<span class='api-url'><span class='get'>GET</span> /quotes</span></p>
+<h3 id='get-parameters-4'>Get Parameters</h3>
+<ul>
+<li>api_key = {your_api_key}</li>
+<li>api_secret = {your_api_secret}</li>
+</ul>
+
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">20069</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="s2">"2017-04-14 16:42:50"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zbsid"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"meta"</span><span class="p">:{</span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"New Website"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"val"</span><span class="p">:</span><span class="mi">500</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"date"</span><span class="p">:</span><span class="s2">"14.04.2017"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"notes"</span><span class="p">:</span><span class="s2">""</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"customerid"</span><span class="p">:</span><span class="s2">"19967"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='get-quote'>Get Quote</h2>
+<p>Coming soon.</p>
+<h2 id='delete-quote'>Delete Quote</h2>
+<p>Coming soon.</p>
+<h1 id='invoices'>Invoices</h1><h2 id='create-invoice'>Create Invoice</h2>
+<p>Coming soon.</p>
+<h2 id='view-invoices'>View Invoices</h2>
+<p>Retreives a list of the last 20 Invoices generated by the CRM owner. This is useful if you want to display recent invoices.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><br/>
+<span class='api-url'><span class='get'>GET</span> /invoices</span></p>
+<h3 id='get-parameters-5'>Get Parameters</h3>
+<ul>
+<li>api_key = {your_api_key}</li>
+<li>api_secret = {your_api_secret}</li>
+</ul>
+
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">20069</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="s2">"2017-04-14 16:42:50"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zbsid"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"meta"</span><span class="p">:{</span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"New Website"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"val"</span><span class="p">:</span><span class="mi">500</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"date"</span><span class="p">:</span><span class="s2">"14.04.2017"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"notes"</span><span class="p">:</span><span class="s2">""</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"customerid"</span><span class="p">:</span><span class="s2">"19967"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='get-invoice'>Get Invoice</h2>
+<p>Coming Soon.</p>
+<h2 id='delete-invoice'>Delete Invoice</h2>
+<p>Coming Soon.</p>
+<h1 id='transactions'>Transactions</h1><h2 id='create-transaction'>Create Transaction</h2>
+<p>Creates a transaction and assigns the transaction to a Customer if the customer exists (identified by email). Creates a new customer if the email does not exist. POST data must be sent as a JSON post.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><br/>
+<span class='api-url'><span class='post'>POST</span> /create_transaction</span></p>
+<h3 id='get-parameters-6'>Get Parameters</h3>
+<ul>
+<li>api_key = {your_api_key}</li>
+<li>api_secret = {your_api_secret}</li>
+</ul>
+<pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'orderid'</span> <span class="o">=&gt;</span> <span class="s1">'uniqueid'</span><span class="p">,</span>    
+    <span class="s1">'email'</span> <span class="o">=&gt;</span> <span class="s1">'customers email'</span><span class="p">,</span>    
+    <span class="s1">'status'</span> <span class="o">=&gt;</span> <span class="s1">'completed, etc'</span><span class="p">,</span>
+    <span class="s1">'total'</span> <span class="o">=&gt;</span> <span class="s1">'total of the transaction'</span><span class="p">,</span>
+    <span class="s1">'item_title'</span> <span class="o">=&gt;</span> <span class="s1">'Transaction Title'</span><span class="p">,</span>
+    <span class="s1">'net'</span>  <span class="o">=&gt;</span> <span class="s1">'net value'</span><span class="p">,</span>
+    <span class="s1">'fee'</span> <span class="o">=&gt;</span> <span class="s1">'fee for transaction'</span><span class="p">,</span>
+    <span class="s1">'discount'</span> <span class="o">=&gt;</span> <span class="s1">'value of discount'</span><span class="p">,</span>
+    <span class="s1">'tax'</span> <span class="o">=&gt;</span> <span class="s1">'value of tax'</span><span class="p">,</span>   
+
+    <span class="p">);</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"orderid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Completed"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"79.99"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"item_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your Item Name"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"net"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59.99"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="w">
+  </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tax_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='view-transactions'>View Transactions</h2>
+<p>Retreives a list of the last 20 Transactions generated by the CRM owner. This is useful if you want to display recent transactions.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><br/>
+<span class='api-url'><span class='get'>GET</span> /transactions</span></p>
+<h3 id='get-parameters-7'>Get Parameters</h3>
+<ul>
+<li>api_key = {your_api_key}</li>
+<li>api_secret = {your_api_secret}</li>
+</ul>
+
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+     </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">20286</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"created"</span><span class="p">:</span><span class="s2">"2017-04-27 16:51:55"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"meta"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"succeeded"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderid"</span><span class="p">:</span><span class="s2">"ch_1ADFow40goDHn2SuOM9h5Lsn"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"customer"</span><span class="p">:</span><span class="s2">"20284"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"total"</span><span class="p">:</span><span class="mf">69.3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"customer_name"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"date"</span><span class="p">:</span><span class="s2">"2017-04-27"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"item_title"</span><span class="p">:</span><span class="s2">"My Awesome Order"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"net"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tax"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"discount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tax_rate"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"customerid"</span><span class="p">:</span><span class="s2">"20284"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='get-transaction'>Get Transaction</h2>
+<p>Coming Soon.</p>
+<h2 id='delete-transaction'>Delete Transaction</h2>
+<p>Coming Soon.</p>
+<h1 id='events'>Events</h1><h2 id='create-event'>Create Event</h2>
+<p>Creates an event (task) in the CRM. POST data must be sent as a JSON post.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><br/>
+<span class='api-url'><span class='post'>POST</span> /create_event</span></p>
+<h3 id='get-parameters-8'>Get Parameters</h3>
+<ul>
+<li>api_key = {your_api_key}</li>
+<li>api_secret = {your_api_secret}</li>
+</ul>
+<pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="nx">event</span> <span class="nx">title</span>
+                <span class="s1">'customer'</span> <span class="o">=&gt;</span> <span class="nx">ID</span> <span class="nx">of</span> <span class="nx">the</span> <span class="nx">customer</span> <span class="nx">the</span> <span class="nx">event</span> <span class="nx">is</span> <span class="k">for</span> <span class="p">(</span><span class="k">if</span> <span class="nx">any</span><span class="p">)</span>
+                <span class="s1">'notes'</span> <span class="o">=&gt;</span> <span class="nx">customer</span> <span class="nx">notes</span> <span class="nx">string</span>
+                <span class="s1">'to'</span> <span class="o">=&gt;</span> <span class="nx">to</span> <span class="nb">date</span><span class="p">,</span> <span class="nx">format</span> <span class="nb">date</span><span class="p">(</span><span class="s1">'m/d/Y H'</span><span class="p">)</span> <span class="o">.</span> <span class="s2">":00:00"</span><span class="p">;</span>
+                <span class="s1">'from'</span> <span class="o">=&gt;</span> <span class="nx">from</span> <span class="nb">date</span><span class="p">,</span> <span class="nx">format</span> <span class="nb">date</span><span class="p">(</span><span class="s1">'m/d/Y H'</span><span class="p">)</span> <span class="o">.</span> <span class="s2">":00:00"</span><span class="p">;</span>
+                <span class="s1">'notify'</span> <span class="o">=&gt;</span> <span class="mi">0</span> <span class="k">or</span> <span class="mi">24</span> <span class="p">(</span><span class="nx">never</span> <span class="k">or</span> <span class="mi">24</span> <span class="nx">hours</span> <span class="nx">before</span><span class="p">)</span>
+                <span class="s1">'complete'</span> <span class="o">=&gt;</span> <span class="mi">0</span> <span class="k">or</span> <span class="mi">1</span> <span class="p">(</span><span class="nx">boolean</span><span class="p">),</span>
+                <span class="s1">'owner'</span> <span class="o">=&gt;</span> <span class="nx">who</span> <span class="nx">owns</span> <span class="nx">the</span> <span class="nx">event</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="nx">no</span> <span class="nx">one</span><span class="p">)</span>
+                <span class="s1">'event_id'</span> <span class="o">=&gt;</span> 
+            <span class="p">);</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+      </span><span class="s2">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"My Event From the API"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"customer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">44149</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"notes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Here are some notes for the event"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"from"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-01 03:30"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"to"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-01 04:30"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"notify"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"owner"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='view-events'>View Events</h2>
+<p>Retreives a list of the last 20 Events  generated by the CRM owner. This is useful if you want to display recent events.</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><br/>
+<span class='api-url'><span class='get'>GET</span> /events</span></p>
+<h3 id='get-parameters-9'>Get Parameters</h3>
+<ul>
+<li>api_key = {your_api_key}</li>
+<li>api_secret = {your_api_secret}</li>
+</ul>
+
+<blockquote>
+<p>JSON response example:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">44155</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-11 04:37:02"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Event From the API"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Event From the API"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44149"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Here are some notes for the event"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-11 21:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-11 20:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"notify"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"complete"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">44155</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"notify"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"complete"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">38143</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-19 02:11:15"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Demo with Wendy"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-06 02:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-06 02:15:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="mi">37792</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"notify"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"complete"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">38137</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-19 02:09:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Demo with Mark"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-20 13:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-20 13:15:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Demo with mark for Mail Campaigns"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="mi">3085</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"notify"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"complete"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h2 id='get-event'>Get Event</h2>
+<p>Coming Soon.</p>
+<h2 id='delete-event'>Delete Event</h2>
+<p>Coming Soon.</p>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="PHP">PHP</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
