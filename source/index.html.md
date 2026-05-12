@@ -108,8 +108,6 @@ Send a JSON body. Common fields:
 * `tags` (array): list of tag strings to attach.
 * `{custom-field-slug}` (mixed): any custom field by its slug.
 
-<aside class='info'>The legacy second-address keys (<code>secaddr_addr1</code>, <code>secaddr_city</code>, ...) are still accepted for backward compatibility.</aside>
-
 ```php
 <?php
 $data = array(
