@@ -2,7 +2,9 @@
 
 ## Development
 
-Documentation and other files can be found on `source/`.
+The scaffolding for this project is forked from the now-abandonded Slate generator (https://github.com/slatedocs/slate).
+
+Documentation can be found in `source/index.html.md`.
 
 To get started, run the following:
 ```shell
