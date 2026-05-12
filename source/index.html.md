@@ -15,87 +15,75 @@ search: true
 
 # Introduction
 
-Welcome to the Jetpack CRM API v2.0. The API is currently in Beta and we would love your feedback on it. Use the API to talk to Jetpack CRM from another application.
+Welcome to the Jetpack CRM API v2.0. The API can be used to talk to Jetpack CRM from another application.
 
-The following table shows the API version present in each major version of Jetpack CRM
+All endpoints live under your CRM site's API root:
 
-API Version    | Jetpack CRM Version | WP Version | Documentation
--------------- | ------------| ------------ | -------------
-v2             | 2.70+ | 4.0+  | -
-
-We are one of the only WordPress CRM's out there that offer a full API with detailed documentation. 
+`https://{your-site}/zbs_api/{endpoint}`
 
 ## Requirements
 
-To be able to run the Jetpack CRM API you'll need the following on your WordPress install
+* Jetpack CRM v6.0+
+* WordPress v6.0+
+* PHP 7.4+
+* Pretty permalinks enabled in **Settings → Permalinks**. Default permalinks will not work because the API uses custom rewrite endpoints.
 
-* Jetpack CRM v2.70+
-* WordPress v4.4+
-* Pretty permalinks in Settings >Permalinks so that custom enpoints are supported. **Default Permalinks will not work**
-* allow_url_fopen must be enabled on your server
-
-<aside class='info'> Please note that you are not required to install the WP REST API (WP API) plugin.</aside>  
+<aside class='info'>You do not need the WP REST API (WP API) plugin installed.</aside>
 
 ## Errors
 
-<aside class="danger">
-Jetpack CRM API has a numnber of error codes which it returns if it detects something wrong.
-</aside>
-
-The Jetpack CRM API uses the following error codes:
+The Jetpack CRM API returns the following error codes:
 
 Error Code | Meaning
 ---------- | -------
-400 | Bad Request -- Your request is invalid.
-401 | Unauthorized -- Your API key is wrong.
-403 | Forbidden -- The resourcerequested is hidden for administrators only.
-404 | Not Found -- The specified record could not be found.
-405 | Method Not Allowed -- You tried to access a record with an invalid method.
-406 | Not Acceptable -- You requested a format that isn't json.
-410 | Gone -- The record requested has been removed from your database
-418 | I'm a teapot.
-429 | Too Many Requests -- You're requesting too many records! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- You are temporarily offline for maintenance. Please try again later.
+400 | Bad Request. Your request is invalid or the endpoint is unknown.
+401 | Unauthorized. Your API key or secret is wrong.
+403 | Forbidden. You do not have permission to access this resource.
+405 | Method Not Allowed. You used an HTTP method the endpoint doesn't accept.
+418 | I'm a teapot. You tried the `BREW` method.
+
+<aside class="info">Your web server or WordPress may also return standard HTTP errors (404, 500, 503, etc.) outside of the API's own error set.</aside>
 
 ## Parameters
 
-The Jetpack CRM API needs certain parameters to be able to return results. These are
+Every request must include your API credentials as query parameters (see [Authentication](#authentication)).
 
-* api_key = {your_api_key}
-* api_secret = {your_api_secret}
+### Pagination
 
-Additionally, some endpoints also accept
+List endpoints accept:
 
-* zbs_query = {your_search_query}
+* `page`: page number, starting at `1` (default: `1`)
+* `perpage`: results per page (default: `10`)
+* `order`: sort direction, `ASC` or `DESC` (default: `DESC`)
 
-## Pagination
+<aside class='info'>A few endpoints (notably <code>customers</code>) historically read pagination from the JSON request body instead of the query string. Endpoint-specific docs below note where this applies.</aside>
 
-## Ownership / Assignment
+### Ownership / Assignment
 
-Jetpack CRM has an ownership and assignment model. This means that you can restrict results to be only for a certain owner (i.e. assigned to a certain CRM team member). To do this you pass either the "assign", "owned" or "owner" (see endpoints for more information)
+Jetpack CRM has an ownership and assignment model: results can be restricted to records owned by, or assigned to, a specific CRM team member. Endpoints that support this accept the `assign`, `owned`, or `owner` parameters (see each endpoint for details).
 
-## Libraries and Tools
+### Other
 
-Official Libraries
-==================
-
-We have no official libraries at this time. Watch this space.
-
+* `zbs_query`: search phrase for endpoints that support filtering
+* `replace_hyphens_with_underscores_in_json_keys`: set to `1` to rewrite hyphens to underscores in JSON keys (useful for integrations like Zapier that reject hyphenated keys)
+* `external_api_name`: string identifier for the calling integration, surfaced in logs/webhooks
 
 # Authentication
 
-> The API keys are passed via GET parameters to the request URLs e.g.:
+> The API key and secret are passed as query parameters on every request:
 
 ```php
-/{RESOURCE}?api_key={your_api_key}&api_secret={your_api_secret}
+/zbs_api/{endpoint}?api_key={your_api_key}&api_secret={your_api_secret}
 ```
 
+Jetpack CRM uses an API key + secret pair to authenticate requests. Generate yours from the CRM admin (see [How to Generate API Keys](https://jetpackcrm.com/kb/knowledge-base/zero-bs-crm-api-key-and-api-secrets/)).
 
-Jetpack CRM uses API keys to allow access to the API. You can learn how to generate your API keys by reading [How to Generate API Keys](https://jetpackcrm.com/kb/knowledge-base/zero-bs-crm-api-key-and-api-secrets/)
+* Publishable key: `jpcrm_pk_...`
+* Secret key: `jpcrm_sk_...`
 
-The API keys give both *Read* and *Write* access to your install of Jetpack CRM. 
+The credentials grant both **read** and **write** access to your CRM, so treat the secret like a password.
 
+<aside class='info'>Each CRM install has a single key/secret pair. Regenerating from the admin invalidates the previous pair.</aside>
 
 # Customers
 
