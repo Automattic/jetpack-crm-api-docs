@@ -85,6 +85,55 @@ The credentials grant both **read** and **write** access to your CRM, so treat t
 
 <aside class='info'>Each CRM install has a single key/secret pair. Regenerating from the admin invalidates the previous pair.</aside>
 
+# Status
+
+A lightweight health-check endpoint. Use it to verify your API credentials and check the running CRM version before making any other calls.
+
+### HTTP Request
+
+<span class='api-url'><span class='get'>GET</span> /status</span>
+
+Optional query parameters:
+
+* `full`: if present (any value), the response also includes installed core modules and active pro extensions.
+
+> JSON response example:
+
+```json
+{
+  "success": true,
+  "data": {
+    "status": "Successful Connection",
+    "message": "Your API Connection with Jetpack CRM is functioning correctly.",
+    "crm_version": "6.7.2",
+    "db_version": "4.3"
+  }
+}
+```
+
+> With `?full=1`:
+
+```json
+{
+  "success": true,
+  "data": {
+    "status": "Successful Connection",
+    "message": "Your API Connection with Jetpack CRM is functioning correctly.",
+    "crm_version": "6.7.2",
+    "db_version": "4.3",
+    "modules": {
+      "mail-campaigns": true,
+      "client-portal": true
+    },
+    "extensions": {
+      "stripe": { "name": "Stripe Sync", "version": "2.4.0" }
+    }
+  }
+}
+```
+
+<aside class='info'>The response uses the standard WordPress <code>wp_send_json_success</code> envelope, with the payload living under the <code>data</code> key.</aside>
+
 # Customers
 
 ## Create Customer
@@ -173,8 +222,8 @@ Send a JSON body. All fields optional:
 * `search` (string): filter by name/email substring.
 * `owned` (int): WP user ID; only return contacts owned by this user.
 * `company` (int): only return contacts attached to this company ID.
-* `tags` (bool): include tags in each customer object.
-* `invoices`, `quotes`, `transactions` (bool): include related records in each customer object.
+* `tags` (bool): include tags in each customer object. Default: `false`.
+* `invoices`, `quotes`, `transactions` (bool): include related records in each customer object. Default: `false`.
 
 ```php
 <?php
@@ -370,7 +419,7 @@ Send a JSON body. All fields optional:
 * `perpage` (int): results per page, default `10`.
 * `search` (string): filter by name/email substring.
 * `owned` (int): WP user ID; only return companies owned by this user.
-* `invoices`, `quotes`, `transactions` (bool): include related records and totals for each company.
+* `invoices`, `quotes`, `transactions` (bool): include related records and totals for each company. Default: `false`.
 
 ```php
 <?php
