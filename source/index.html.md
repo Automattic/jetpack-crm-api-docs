@@ -28,8 +28,6 @@ All endpoints live under your CRM site's API root:
 * PHP 7.4+
 * Pretty permalinks enabled in **Settings → Permalinks**. Default permalinks will not work because the API uses custom rewrite endpoints.
 
-<aside class='info'>You do not need the WP REST API (WP API) plugin installed.</aside>
-
 ## Errors
 
 The Jetpack CRM API returns the following error codes:
