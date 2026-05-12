@@ -25,7 +25,15 @@ ready do
   require './lib/multilang.rb'
 end
 
-activate :sprockets
+helpers do
+  # Concatenate JS source files in order, stripping legacy sprockets `//= require` lines.
+  def js_concat(paths)
+    paths.map do |p|
+      File.read(File.join('source', 'javascripts', "#{p}.js"))
+          .gsub(/^\/\/=\s*require\s.+$/, '')
+    end.join("\n")
+  end
+end
 
 activate :autoprefixer do |config|
   config.browsers = ['last 2 version', 'Firefox ESR']
