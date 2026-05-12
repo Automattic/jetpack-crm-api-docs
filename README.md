@@ -14,11 +14,11 @@ bundle exec middleman server
 
 Docs will be visible here: `http://localhost:4567`
 
-## Deployment
-
-Run the following to build the documentation:
+To generate static files in the `build/` dir, run the following:
 ```shell
 bundle exec middleman build
 ```
 
-This will generate content in `build/`. You can then deploy to `gh-pages` with `./deploy.sh`.
+## Deployment
+
+You can deploy to `gh-pages` with `./deploy.sh`.
