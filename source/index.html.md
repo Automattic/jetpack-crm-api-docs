@@ -287,6 +287,137 @@ Query parameters:
 }
 ```
 
+# Companies
+
+## Create Company
+
+Creates or updates a company. The unique key is the email address; if a matching company exists it is updated, otherwise a new one is created. Pass `id` to update a specific company regardless of email. On success the response echoes the data you sent plus the new `id` (if created).
+
+### HTTP Request
+
+<span class='api-url'><span class='post'>POST</span> /create_company</span>
+
+Send a JSON body. Common fields:
+
+* `name` (string): company name.
+* `email` (string): company email. Unique key for create-or-update.
+* `id` (int): existing company ID. If set, updates that record.
+* `status` (string): company status. If omitted, the CRM's default status is used.
+* `addr1`, `addr2`, `city`, `county`, `postcode`, `country` (string): main address.
+* `secaddr1`, `secaddr2`, `seccity`, `seccounty`, `secpostcode`, `seccountry` (string): second address.
+* `maintel`, `sectel` (string): phone numbers.
+* `tw`, `li`, `fb` (string): Twitter/LinkedIn/Facebook URLs.
+* `assign` (int): WordPress user ID of the team member to own this company.
+* `tags` (array): list of tag strings to attach.
+* `{custom-field-slug}` (mixed): any custom field by its slug.
+
+```php
+<?php
+$data = array(
+    'name'     => 'Acme Inc.',
+    'email'    => 'hello@acme.com',
+    'status'   => 'Customer',
+
+    'maintel'  => '1234 567 89',
+    'sectel'   => '1234 567 90',
+
+    'addr1'    => 'Sample House',
+    'addr2'    => 'Sample Road',
+    'city'     => 'Sample City',
+    'county'   => 'Sample State',
+    'postcode' => 'P0ST C0D3',
+    'country'  => 'UK',
+
+    'secaddr1'    => 'Sample House 2',
+    'secaddr2'    => 'Sample Road 2',
+    'seccity'     => 'Sample City 2',
+    'seccounty'   => 'Sample State 2',
+    'secpostcode' => 'P1ST C1D3',
+    'seccountry'  => 'USA',
+
+    'tags'         => array( 'partner', 'priority' ),
+    'assign'       => 1,
+    'custom-field' => 'bacon',
+);
+?>
+```
+
+> JSON response example:
+
+```json
+{
+  "name": "Acme Inc.",
+  "email": "hello@acme.com",
+  "status": "Customer",
+  "addr1": "Sample House",
+  "city": "Sample City",
+  "country": "UK",
+  "id": 442
+}
+```
+
+## View Companies
+
+Returns a paginated list of companies.
+
+### HTTP Request
+
+<span class='api-url'><span class='post'>POST</span> /companies</span>
+
+Send a JSON body. All fields optional:
+
+* `page` (int): page number, default `1`.
+* `perpage` (int): results per page, default `10`.
+* `search` (string): filter by name/email substring.
+* `owned` (int): WP user ID; only return companies owned by this user.
+* `invoices`, `quotes`, `transactions` (bool): include related records and totals for each company.
+
+```php
+<?php
+$data = array(
+    'perpage'      => 20,
+    'page'         => 1,
+    'search'       => 'acme',
+    'invoices'     => true,
+    'transactions' => true,
+    'owned'        => 1,
+);
+?>
+```
+
+> JSON response example:
+
+```json
+[
+  {
+    "id": 442,
+    "owner": 1,
+    "status": "Customer",
+    "name": "Acme Inc.",
+    "email": "hello@acme.com",
+    "addr1": "Sample House",
+    "addr2": "Sample Road",
+    "city": "Sample City",
+    "county": "Sample State",
+    "country": "UK",
+    "postcode": "P0ST C0D3",
+    "maintel": "1234 567 89",
+    "sectel": "",
+    "tw": "",
+    "li": "",
+    "fb": "",
+    "created": 1713994418,
+    "created_date": "2024-04-25",
+    "lastupdated": 1713994418,
+    "invoices_total": "1500.00",
+    "invoices_count": 3,
+    "transactions_total": "1500.00",
+    "transactions_paid_total": "1500.00",
+    "total_value": "1500.00"
+  }
+]
+```
+
 # Quotes
 
 ## View Quotes
