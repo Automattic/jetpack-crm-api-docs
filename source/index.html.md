@@ -87,54 +87,60 @@ The credentials grant both **read** and **write** access to your CRM, so treat t
 
 # Customers
 
-## Create Customer 
+## Create Customer
 
-To Create a new Customer in your Jetpack CRM using the API you need to send a JSON post request to the URL. This will create or update a customer. The unique key is their email address. On Sucess the response will return the details of the new Customer added.
+Creates or updates a customer. The unique key is the email address; if a matching contact exists it is updated, otherwise a new one is created. Pass `id` to update a specific contact regardless of email. On success the response echoes the data you sent plus the new `id` (if created).
 
 ### HTTP Request
-<br/>
+
 <span class='api-url'><span class='post'>POST</span> /create_customer</span>
 
-### Get Parameters
-* api_key = {your_api_key}
-* api_secret = {your_api_secret}
+Send a JSON body. Common fields:
 
+* `email` (string): customer email. Unique key for create-or-update.
+* `id` (int): existing contact ID. If set, updates that record.
+* `status` (string): one of `Lead`, `Customer`, `Refused`. Other custom statuses are also accepted.
+* `prefix`, `fname`, `lname` (string): name fields.
+* `addr1`, `addr2`, `city`, `county`, `postcode`, `country` (string): main address.
+* `secaddr1`, `secaddr2`, `seccity`, `seccounty`, `secpostcode`, `seccountry` (string): second address.
+* `hometel`, `worktel`, `mobtel` (string): phone numbers.
+* `assign` (int): WordPress user ID of the team member to own this contact.
+* `tags` (array): list of tag strings to attach.
+* `{custom-field-slug}` (mixed): any custom field by its slug.
+
+<aside class='info'>The legacy second-address keys (<code>secaddr_addr1</code>, <code>secaddr_city</code>, ...) are still accepted for backward compatibility.</aside>
 
 ```php
 <?php
 $data = array(
-    'status' => 'Lead',    
-    'prefix' => 'Mr',
-    'fname'  => 'John', 			        
-    'lname'  => 'Doe', 			        
-    'suffix' => 'MSc',    		        
-    'email'  => 'someone@somewhere.com',		
+    'status'   => 'Lead',
+    'prefix'   => 'Mr',
+    'fname'    => 'John',
+    'lname'    => 'Doe',
+    'email'    => 'someone@somewhere.com',
 
-    'hometel' => '1234 567 89',  	
-    'worktel' => '1234 567 89',  
+    'hometel'  => '1234 567 89',
+    'worktel'  => '1234 567 89',
     'mobtel'   => '1234 567 89',
 
-    'addr1'    => 'Sample House', 
-    'addr2'    => 'Sample Road', 
-    'city'     => 'Sample City' 
-    'county'   => 'Sample State', 
-    'postcode' => 'P0ST C0D3', 
-    'country'  => 'UK', 
+    'addr1'    => 'Sample House',
+    'addr2'    => 'Sample Road',
+    'city'     => 'Sample City',
+    'county'   => 'Sample State',
+    'postcode' => 'P0ST C0D3',
+    'country'  => 'UK',
 
-    'secaddr_addr1'    => 'Sample House 2', 
-    'secaddr_addr2'    => 'Sample Road 2',
-    'secaddr_city'     => 'Sample City 2',
-    'secaddr_county'   => 'Sample State 2', 
-    'secaddr_postcode' => 'P1ST C1D3',
-    'secaddr_country'  => 'USA', 
+    'secaddr1'    => 'Sample House 2',
+    'secaddr2'    => 'Sample Road 2',
+    'seccity'     => 'Sample City 2',
+    'seccounty'   => 'Sample State 2',
+    'secpostcode' => 'P1ST C1D3',
+    'seccountry'  => 'USA',
 
-    'custom-field' => 'bacon'
-    'assign' => '1'
-    );
-
-
-
-
+    'tags'         => array( 'newsletter', 'vip' ),
+    'assign'       => 1,
+    'custom-field' => 'bacon',
+);
 ?>
 ```
 
@@ -148,136 +154,140 @@ $data = array(
   "status": "Lead",
   "prefix": "Mr",
   "addr1": "1 Sample Road",
-  "addr2": "Sample Town",
   "city": "Sampleton",
-  "county": "Samples",
   "postcode": "SAM PL4",
-  "hometel": "123 455",
-  "worktel": "",
-  "mobtel" : "555 135",
-  "notes" : "Added from the API",
-  "ID" : 135
+  "id": 135
 }
 ```
 
 ## View Customers
 
-Returns a list of customers. The meta information returned is the fields for the Customer (same as in create customer). If you have custom fields these are labelled slug (key): (value) in the meta element of the JSON response. Visit the URL in a browser window to inspect the response.
+Returns a paginated list of customers. Each entry includes core fields plus all custom fields, keyed by slug, in the `meta` object. Optionally include related invoices, quotes, transactions, and tags.
 
 ### HTTP Request
-<br/>
+
 <span class='api-url'><span class='post'>POST</span> /customers</span>
 
-### Get Parameters
-* api_key = {your_api_key}
-* api_secret = {your_api_secret}
+Send a JSON body. All fields optional:
 
+* `page` (int): page number, default `1`.
+* `perpage` (int): results per page, default `10`.
+* `search` (string): filter by name/email substring.
+* `owned` (int): WP user ID; only return contacts owned by this user.
+* `company` (int): only return contacts attached to this company ID.
+* `tags` (bool): include tags in each customer object.
+* `invoices`, `quotes`, `transactions` (bool): include related records in each customer object.
 
 ```php
 <?php
 $data = array(
-    'perpage' => '20',    
-    'page' => '1',
-    'search' => 'string',
-    'transactions' => 1,
-    'invoices' => 1,
-    'quotes' => 1,
-    'owned' => '1'
-    );
+    'perpage'      => 20,
+    'page'         => 1,
+    'search'       => 'doe',
+    'transactions' => true,
+    'invoices'     => true,
+    'quotes'       => true,
+    'tags'         => true,
+    'owned'        => 1,
+    'company'      => 42,
+);
 ?>
 ```
 
 > JSON response example:
 
 ```json
-{
-     "id":20267,
-     "created":"2017-04-25 03:33:38",
-     "name":"John Doe",
-     "filterTot":83,
-     "filterPages":5,
-     "meta":{
-             "zbsc_status":"Lead",
-             "status":"Customer",
-             "prefix":"",
-             "fname":"John",
-             "lname":"Doe",
-             "cf1":"Custom Field 1",
-             "addr1":"",
-             "addr2":"",
-             "city":"",
-             "county":"",
-             "postcode":"",
-             "country":"",
-             "secaddr_addr1":"",
-             "secaddr_addr2":"",
-             "secaddr_city":"",
-             "secaddr_county":"",
-             "secaddr_postcode":"",
-             "secaddr_country":"",
-             "hometel":"",
-             "worktel":"",
-             "mobtel":"",
-             "email":"email@email.com",
-             "notes":""
-        }
-}
+[
+  {
+    "id": 20267,
+    "owner": 1,
+    "status": "Customer",
+    "email": "john@example.com",
+    "prefix": "Mr",
+    "fname": "John",
+    "lname": "Doe",
+    "addr1": "1 Sample Road",
+    "addr2": "",
+    "city": "Sampleton",
+    "county": "",
+    "country": "UK",
+    "postcode": "SAM PL4",
+    "hometel": "123 455",
+    "worktel": "",
+    "mobtel": "555 135",
+    "tw": "",
+    "li": "",
+    "fb": "",
+    "created": "2024-04-25 03:33:38",
+    "createduts": 1713994418,
+    "lastupdated": 1713994418,
+    "fullname": "John Doe",
+    "name": "John Doe",
+    "cf1": "Custom Field 1"
+  }
+]
 ```
 
 ## Search Customers
 
-Searches the customers based on the query string $_GET['zbs_query']. Use this to Deep Search the meta values for the customers.
+Search customers by free-text query against the deep meta (name, address, custom fields, etc.), or look up a single customer directly by email.
 
 ### HTTP Request
-<br/>
+
 <span class='api-url'><span class='get'>GET</span> /customer_search</span>
 
-### Get Parameters
-* api_key = {your_api_key}
-* api_secret = {your_api_secret}
-* zbs_query = {your_search_query}
+Query parameters:
 
+* `zbs_query` (string): search phrase. Returns matching customers.
+* `email` (string): exact email lookup. Returns one customer with related invoices, transactions, and tags attached.
+* `page`, `perpage`, `order`: standard [pagination](#pagination).
+* `replace_hyphens_with_underscores_in_json_keys` (int): set to `1` to rewrite hyphenated JSON keys to underscores (useful for Zapier, etc.).
 
-> JSON response example:
+```php
+<?php
+// Free-text search:
+// GET /zbs_api/customer_search?api_key=...&api_secret=...&zbs_query=doe
+
+// Direct email lookup (includes financial data):
+// GET /zbs_api/customer_search?api_key=...&api_secret=...&email=john@doe.com
+?>
+```
+
+> JSON response example (`zbs_query` search returns an array):
+
+```json
+[
+  {
+    "id": 20267,
+    "owner": 1,
+    "status": "Customer",
+    "email": "john@example.com",
+    "fname": "John",
+    "lname": "Doe",
+    "fullname": "John Doe",
+    "name": "John Doe",
+    "created": "2024-04-25 03:33:38"
+  }
+]
+```
+
+> JSON response example (`email` lookup returns a single object with linked records):
 
 ```json
 {
-     "id":20267,
-     "created":"2017-04-25 03:33:38",
-     "name":"John Doe",
-     "filterTot":83,
-     "filterPages":5,
-     "meta":{
-             "zbsc_status":"Lead",
-             "status":"Customer",
-             "prefix":"",
-             "fname":"John",
-             "lname":"Doe",
-             "cf1":"Custom Field 1",
-             "addr1":"",
-             "addr2":"",
-             "city":"",
-             "county":"",
-             "postcode":"",
-             "country":"",
-             "secaddr_addr1":"",
-             "secaddr_addr2":"",
-             "secaddr_city":"",
-             "secaddr_county":"",
-             "secaddr_postcode":"",
-             "secaddr_country":"",
-             "hometel":"",
-             "worktel":"",
-             "mobtel":"",
-             "email":"email@email.com",
-             "notes":""
-        }
+  "id": 20267,
+  "owner": 1,
+  "status": "Customer",
+  "email": "john@example.com",
+  "fname": "John",
+  "lname": "Doe",
+  "fullname": "John Doe",
+  "created": "2024-04-25 03:33:38",
+  "invoices": [],
+  "transactions": [],
+  "tags": []
 }
 ```
-
-## Delete Customer
-
-Coming soon.
 
 # Quotes
 
