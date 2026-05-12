@@ -48,6 +48,7 @@ html, body {
 }
 
 .api-url{
+  display: inline-block;
   padding: 15px;
   background: #2e3336;
   color: white;
@@ -93,12 +94,23 @@ html, body {
   }
 
   // This is the logo at the top of the ToC
+  .logo-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 16px 0 24px;
+  }
   .logo {
     display: block;
-    max-width: 100%;
-    margin-bottom: $logo-margin;
-    margin: auto;
-    margin-top: 10px;
+    width: 64px;
+    height: auto;
+  }
+  .logo-text {
+    color: $nav-text;
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: 1px;
   }
 
   &>.search {
