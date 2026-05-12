@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - PHP
 
 toc_footers:
-  - <a href='https://jetpackcrm.com/extension-bundles/'>Entrepreneur's Bundle</a>
+  - <a href='https://jetpackcrm.com/pricing/' target='_blank' rel='noopener'>Entrepreneur Bundle</a>
 
 includes:
 
@@ -86,6 +86,8 @@ The credentials grant both **read** and **write** access to your CRM, so treat t
 <aside class='info'>Each CRM install has a single key/secret pair. Regenerating from the admin invalidates the previous pair.</aside>
 
 # Status
+
+## Get Status
 
 A lightweight health-check endpoint. Use it to verify your API credentials and check the running CRM version before making any other calls.
 
@@ -209,7 +211,7 @@ $data = array(
 
 ## View Customers
 
-Returns a paginated list of customers. Each entry includes core fields plus all custom fields, keyed by slug, in the `meta` object. Optionally include related invoices, quotes, transactions, and tags.
+Returns a paginated list of customers. Each entry includes core fields plus any custom fields keyed by slug. Optionally include related invoices, quotes, transactions, and tags.
 
 ### HTTP Request
 
